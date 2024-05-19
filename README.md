@@ -3,9 +3,7 @@ Comparing performance characteristics of different server architecture strategie
 
 Authors
 --------
-Kesi Neblett
-Padraic Quinn
-Jonathan Voss
+Kesi Neblett, Padraic Quinn, and Jonathan Voss
 
 Part 0
 ------
@@ -57,7 +55,7 @@ The code works as specified in the assignment. Statistics are still handled.
 
 Part 5
 ------
-~Non Thread-Safe Functions~
+Non Thread-Safe Functions
 strtok() and inet_ntoa() are not thread safe as they store information in static
 memory. strtok() has a reentrant function strtok_r() that stores information in
 the variable specified in the arguments. inet_ntoa() also has a reenterant 
@@ -65,7 +63,7 @@ function inet_ntoa_r() but it is not available in Linux. However, inet_ntoa also
 returns the modified string. We used strcpy to save the return value of
 inet_ntoa in a variable declared on each threads local stack. 
 
-~Design Decisions~
+Design Decisions
 We used a struct, tdata, to store the client socket, thread id, a sockaddr_in
 struct, and, and the root of the path name to the html file. We pass this struct
 to every new thread created. We chose to malloc the struct tdata and malloc the
@@ -76,7 +74,7 @@ informaton from the child thread and we also do not want to block the process to
 wait for a thread to finish becuase that is pointless. We free the thread id and
 struct after the child thread detaches.
 
-~Benchmark Testing~
+Benchmark Testing
 Tested using apache bench with n = 100 and c = 5
 The data below are results of the runs with the lowest request per second out
 of 10 runs with apache bench on each server (part0, part1, part5).
