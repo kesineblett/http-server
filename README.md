@@ -22,8 +22,7 @@ program has stopped operating. The OS would need to close two defunct socket
 descriptors rather than just one. The child processes are handled as quickly as
 possible given the specifications for the assignment. Our first implementation 
 made the server socket nonblocking so that we could essentially infinitely loop
-between calling accept and waitpid. However, TA Chaiwen Chou indicated in the
-listserv that having a nonblocking server socket was not the right
+between calling accept and waitpid. However, having a nonblocking server socket was not the right
 implementation. Therefore, all zombie children are cleaned up after another
 request is accepted, as the program blocks on accept. This is done by calling 
 waitpid in a nonblocking fashion on all of its children (by passing a pid of -1
